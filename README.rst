@@ -22,6 +22,12 @@ Goal
 We want to make this the most comprehensive time series preprocessing library.
 
 
+Installation
+============
+
+Use `pip install git+https:`
+
+
 Relation to *tsfresh*
 =====================
 
