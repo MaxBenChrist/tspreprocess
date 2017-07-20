@@ -11,7 +11,6 @@ from unittest import TestCase
 
 
 class CompressTestCase(TestCase):
-
     def setUp(self):
         cid = np.repeat([10, 500], 10)
         ckind = np.repeat(["a", "b", "a", "b"], 5)
@@ -24,7 +23,7 @@ class CompressTestCase(TestCase):
                 0, 27, 36, 43, 33,
                 2, 24, 71, 41, 28]
         self.df = pd.DataFrame({"id": cid, "kind": ckind, "sort": csort, "val": cval})
-        self.col_naming = {"column_id":"id", "column_kind":"kind", "column_sort":"sort", "column_value":"val"}
+        self.col_naming = {"column_id": "id", "column_kind": "kind", "column_sort": "sort", "column_value": "val"}
 
         # gives the following DataFrame
         """
@@ -52,14 +51,13 @@ class CompressTestCase(TestCase):
         """
 
     def test_compress_max(self):
-
         dd = compress(self.df,
                       compression_functions={"maximum": None},
                       interval_length=2,
                       **self.col_naming)
 
-        expected_dd = pd.DataFrame({"id": ["10"]*3 + ["500"]*3,
-                                    "sort": ["bin_0", "bin_1", "bin_2"]*2,
+        expected_dd = pd.DataFrame({"id": ["10"] * 3 + ["500"] * 3,
+                                    "sort": ["bin_0", "bin_1", "bin_2"] * 2,
                                     "a_maximum": [11., 67., 30., 27., 43., 33.],
                                     "b_maximum": [62., 56., 29., 24., 71., 28.]})
 
@@ -68,14 +66,13 @@ class CompressTestCase(TestCase):
         assert_frame_equal(expected_dd, dd)
 
     def test_compress_min(self):
-
         dd = compress(self.df,
                       compression_functions={"minimum": None},
                       interval_length=2,
                       **self.col_naming)
 
-        expected_dd = pd.DataFrame({"id": ["10"]*3 + ["500"]*3,
-                                    "sort": ["bin_0", "bin_1", "bin_2"]*2,
+        expected_dd = pd.DataFrame({"id": ["10"] * 3 + ["500"] * 3,
+                                    "sort": ["bin_0", "bin_1", "bin_2"] * 2,
                                     "a_minimum": [9., 45., 30., 0., 36., 33.],
                                     "b_minimum": [58., 19., 29., 2., 41., 28.]})
 
@@ -84,3 +81,4 @@ class CompressTestCase(TestCase):
         assert_frame_equal(expected_dd, dd)
 
 
+    # todo: we need tests for the other tsfresh formats, maybe just restructure the DF from above
