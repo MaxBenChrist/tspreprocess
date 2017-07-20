@@ -1,19 +1,29 @@
+|license|
+
+Disclaimer: This package is WIP. Do not take any APIs for granted.
+
 ============
 tspreprocess
 ============
 
+Time series can contain noise, be sampled under a non fitting rate or need to be compressed.
+*tspreprocess* is a library of preprocessing tools for time series data to tackle such problems.
 
-Add a short description here!
+It contains methods to do
+
+* Denoising
+* Compression
+* Resampling
 
 
-Description
-===========
-
-A longer description of your project goes here...
-
-
-Note
+Goal
 ====
 
-This project has been set up using PyScaffold 2.5.7. For details and usage
-information on PyScaffold see http://pyscaffold.readthedocs.org/.
+We want to make this the most comprehensive time series preprocessing library.
+
+
+Relation to *tsfresh*
+=====================
+
+This package will based on the APIs from *tsfresh* (https://github.com/blue-yonder/tsfresh), allowing a seamless
+integration between both packages.
