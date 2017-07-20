@@ -25,7 +25,9 @@ We want to make this the most comprehensive time series preprocessing library.
 Installation
 ============
 
-Use `pip install git+https:`
+Use clone the repo, cd into it and install it with `pip install -e .`.
+
+You can run tests by `python setup.py test`
 
 
 Relation to *tsfresh*
