@@ -44,3 +44,5 @@ MANIFEST
 # Virtualenvironment
 /venv
 
+# Mac os folder files
+.DS_Store
