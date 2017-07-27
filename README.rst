@@ -4,10 +4,10 @@
 tspreprocess
 ============
 
-Time series can contain noise, be sampled under a non fitting rate or need to be compressed.
-*tspreprocess* is a library of preprocessing tools for time series data to tackle such problems.
+Time series can contain noise, may be sampled under a non fitting rate or just need to be compressed.
+*tspreprocess* is a library for such preprocessing tasks. It contains tools to transform and clean time series data for better analyses.
 
-We are planning to add methods to do
+In detail, we are planning to add methods to do
 
 * Denoising
 * Compression
