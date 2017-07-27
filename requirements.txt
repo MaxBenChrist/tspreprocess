@@ -1,5 +1,5 @@
 # Add your requirements here like:
 numpy==1.13.1
 pandas==0.20.3
-tsfresh==0.8.1
 six==1.10.0
+# git+https://github.com/blue-yonder/tsfresh.git
