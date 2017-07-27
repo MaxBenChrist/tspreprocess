@@ -5,7 +5,7 @@
 from __future__ import absolute_import, division
 import numpy as np
 from tsfresh import extract_features
-from tsfresh.utilities.dataframe_functions import normalize_input_to_internal_representation
+from tsfresh.utilities.dataframe_functions import _normalize_input_to_internal_representation
 import six
 
 
@@ -46,20 +46,20 @@ def compress(ts, compression_functions, interval_length, column_id, column_sort,
     :type column_value: str
     """
 
-    dd = normalize_input_to_internal_representation(ts, column_id, column_sort, column_kind, column_value)[0]
+    dd, column_id, column_kind, column_value = \
+        _normalize_input_to_internal_representation(ts, column_id, column_sort, column_kind, column_value)
 
     def create_bins(v):
         n_bins = np.ceil(len(v) / interval_length)
         return np.repeat(np.arange(n_bins), interval_length)[:len(v)]
 
-    for k, df_k in six.iteritems(dd):
-        df_k[column_id] = df_k[column_id].apply(str) + "_bin_" + \
-                           df_k.groupby(column_id)[column_value].transform(create_bins).apply(str)
-        dd[k] = df_k
+    dd[column_id] = dd[column_id].apply(str) + "_bin_" + \
+                    dd.groupby([column_id, column_kind])[column_value].transform(create_bins).apply(str)
 
     dd = extract_features(dd,
                           column_id=column_id,
                           column_value=column_value,
+                          column_kind=column_kind,
                           default_fc_parameters=compression_functions)
 
     dd.columns = [x.replace("__", "_") for x in dd.columns]

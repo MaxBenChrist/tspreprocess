@@ -62,6 +62,7 @@ class CompressTestCase(TestCase):
                                     "b_maximum": [62., 56., 29., 24., 71., 28.]})
 
         expected_dd = expected_dd[dd.columns]
+
         expected_dd.sort_values(by=["id", "sort"], inplace=True)
         assert_frame_equal(expected_dd, dd)
 
