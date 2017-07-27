@@ -6,7 +6,6 @@ from __future__ import absolute_import, division
 import numpy as np
 from tsfresh import extract_features
 from tsfresh.utilities.dataframe_functions import _normalize_input_to_internal_representation
-import six
 
 
 # todo: maybe compress is not the right term? because we are losing information
@@ -89,3 +88,8 @@ def compress_SCADA_like(ts, interval_length, column_id, column_sort, column_kind
                     compression_functions={"minimum": None, "maximum": None, "mean": None, "variance": None},
                     intervall_lenght=interval_length,
                     column_id=column_id, column_sort=column_sort, column_kind=column_kind, column_value=column_value)
+
+
+def make_SAX():
+
+    pass
