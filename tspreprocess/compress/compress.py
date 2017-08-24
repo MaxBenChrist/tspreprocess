@@ -62,15 +62,16 @@ def compress(ts, compression_functions, interval_length, column_id, column_sort,
                           default_fc_parameters=compression_functions)
 
     dd.columns = [x.replace("__", "_") for x in dd.columns]
+    dd.columns = [x.replace("feature", "map") for x in dd.columns]
     dd.reset_index(drop=False, inplace=True)
 
     ids = dd[column_id].str.split("_bin_").apply(lambda s: s[0])
-    bin_number = dd["id"].str.split("_bin_").apply(lambda s: s[1])
+    bin_number = dd["id"].str.split("_bin_").apply(lambda s: eval(s[1]))
 
     dd[column_id] = ids
-    dd[column_sort] = "bin_" + bin_number
+    dd["bin"] =  bin_number
 
-    return dd.sort_values(by=[column_id, column_sort])
+    return dd.sort_values(by=[column_id, "bin"])
 
 
 # todo: add references to SCADA sources
